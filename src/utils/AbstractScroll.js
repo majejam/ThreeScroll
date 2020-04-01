@@ -109,8 +109,6 @@ export default class abstractCustomScroll {
     }
 
     onTouchStart(event) {
-        console.log('cc');
-
         this.pointerEvent = event.touches[0];
         this.oldDeltaY = this.scrollY;
         this.startDeltaY = this.pointerEvent.pageY;

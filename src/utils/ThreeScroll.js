@@ -29,11 +29,7 @@ export default class ThreeScroll {
 
     _resize() {
         this.setSizes()
-        this.distance = this.getBoundingHeight()
-        this.scroll.resize({
-            x: 0,
-            y: this.distance + this.offsets.y + this.offsets.top + this.offsets.bottom
-        })
+        this.update()
     }
 
     setOffsets() {
@@ -53,6 +49,21 @@ export default class ThreeScroll {
     getBoundingHeight() {
         let box = new THREE.Box3().setFromObject(this.container);
         return box.getSize(new THREE.Vector3()).y - this.sizes.height
+    }
+
+    updateOffset(params) {
+        this.offsets = params
+        this.update()
+    }
+
+    update() {
+        this.distance = this.getBoundingHeight()
+        this.setOffsets()
+        this.scroll.resize({
+            x: 0,
+            y: this.distance + this.offsets.y + this.offsets.top + this.offsets.bottom
+        })
+        this.scroll.reset()
     }
 
     events() {

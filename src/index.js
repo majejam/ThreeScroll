@@ -8,6 +8,8 @@ import ThreeScroll from './utils/ThreeScroll'
 
 var camera, scene, renderer, container;
 
+let scroll = null
+
 init();
 
 function init() {
@@ -33,12 +35,21 @@ function init() {
 
     scene.add(container);
 
-    new ThreeScroll(container, {
+    scroll = new ThreeScroll(container, {
         x: 100,
         y: 0,
         top: 100,
         bottom: 100
     })
+
+    setTimeout(() => {
+        scroll.updateOffset({
+            x: -200,
+            y: 500,
+            top: 0,
+            bottom: 0
+        })
+    }, 1000);
 }
 
 
